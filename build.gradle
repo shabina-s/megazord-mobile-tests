@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'com.rally.automation'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    jcenter {
+        credentials {
+            username '$ARTIFACTORY_USERNAME'
+            password '$ARTIFACTORY_PASSWORD'
+       }
+        artifactUrls 'https://artifacts.werally.in/artifactory/advocacy/'
+    }
+}
+
+ext.appiumVersion = '7.0.0'
+
+dependencies {
+    compile group: 'org.testng', name: 'testng', version: '6.14.3'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+    compile group: 'com.github.appium', name: 'java-client', version: "$appiumVersion"
+    testCompile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    compile group: 'qa', name: 'mobile-test-framework', version: '0.0.6-13', ext: 'jar'
+}
